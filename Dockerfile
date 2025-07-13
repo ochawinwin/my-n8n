@@ -6,11 +6,10 @@ USER root
 
 # Install FFmpeg and its dependencies
 # This ensures FFmpeg is available in the container
-#RUN apt-get update && apt-get install -y \
-#    ffmpeg \
-    # Add any other necessary packages here, e.g., curl, wget
-#    && apt-get clean \
-#    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Switch back to the n8n user (node) for security best practices
 # This user is created and used by the base n8n image
