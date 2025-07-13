@@ -4,11 +4,8 @@ FROM n8nio/n8n:latest
 # Switch to root user to install system packages
 USER root
 
-# Install FFmpeg and its dependencies
-# This ensures FFmpeg is available in the container
-RUN apt-get update && apt-get install -y \
-    ffmpeg \
-    && apt-get clean \
+# Install FFmpeg and clean up apt lists to reduce image size
+RUN apt-get update && apt-get install -y ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # Switch back to the n8n user (node) for security best practices
