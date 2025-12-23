@@ -6,7 +6,10 @@ USER root
 
 # Install FFmpeg and clean up apt lists to reduce image size
 # RUN apk update && apk add --no-cache ffmpeg && rm -rf /var/cache/apk/*
-RUN apk add --update --no-cache ffmpeg
+RUN /usr/bin/apt-get update && \
+    /usr/bin/apt-get install -y --no-install-recommends ffmpeg && \
+    /usr/bin/apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Switch back to the n8n user (node) for security best practices
 # This user is created and used by the base n8n image
